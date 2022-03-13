@@ -1,10 +1,4 @@
 #!/usr/bin/python3
-<<<<<<< HEAD
-
-def binary_search(array, target):
-    first_index = 0
-    last_index = len(array) - 1
-=======
 """
 Binary Search (Iterative / Recursive)
 """
@@ -23,10 +17,9 @@ def binary_search(array, target):
 
     Eventually, if the number is in the array, we will find it
 
-    Else, it'll hit the False statement below
+    Else, it'll hit the False statement below 
     """
     first_index, last_index = 0, len(array) - 1
->>>>>>> Added binary search
 
     while first_index <= last_index:
         mid_index = (first_index + last_index) // 2
@@ -41,8 +34,6 @@ def binary_search(array, target):
 
 
 def binary_search_recursive(array, target):
-<<<<<<< HEAD
-=======
     """
     -------------------
     BINARY SEARCH (Rec)
@@ -53,9 +44,8 @@ def binary_search_recursive(array, target):
     value we're looking for.
 
     Else, from the midway point create a new array to the left
-    or right and send the subarray to the recursive function
+    or right and send the subarray to the recursive function 
     """
->>>>>>> Added binary search
     if not array: return False
 
     first_idx, last_idx = 0, len(array) - 1
