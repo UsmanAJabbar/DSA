@@ -32,11 +32,7 @@ def valid_anagram(s: str, t: str) -> bool:
     s_count = count_letters_in_string(s)
     t_count = count_letters_in_string(t)
 
-    if len(s_count) != len(t_count):
-        return False
-
-    for l_key in s_count:
-        if s_count[l_key] != t_count.get(l_key):
-            return False
-
-    return True
+    return (
+        len(s_count) == len(t_count)
+        and s_count == t_count
+    )
