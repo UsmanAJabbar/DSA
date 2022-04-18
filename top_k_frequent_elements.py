@@ -23,7 +23,7 @@ def top_k_frequent_elements(nums: list, k: int) -> list:
 
     result = []
     predicted_key = max_occurrence_of_any_element
-    while k > 0 and predicted_key != 0:
+    while k > 0:
         if occ_element_dict.get(predicted_key):
             result += [
                 occ_element_dict[predicted_key]
