@@ -8,7 +8,7 @@ def group_anagram(strs: list):
         list of listed strings
     """
 
-    def letter_count_arr(s: str) -> list:
+    def key_generator(s: str) -> list:
         """Returns a letter count of how many times a-z appears
         in a string defined by @s
 
@@ -19,18 +19,16 @@ def group_anagram(strs: list):
             list with counts occurrences of 'a' - 'z'
         """
         letter_count = [0] * 26
-        for letter in string:
+        for letter in s:
             letter_count[
                 ord(letter) - ord('a')
             ] += 1
-        return letter_count
+        return tuple(letter_count)
 
     anagrams = {}
 
     for string in strs:
-        key = tuple(
-            letter_count_arr(string)
-        )
+        key = key_generator(string)
         anagrams[key] = anagrams.get(key, []) + [string]
 
     return [
