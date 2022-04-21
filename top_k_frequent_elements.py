@@ -6,29 +6,23 @@ def top_k_frequent_elements(nums: list, k: int) -> list:
             count[x] = count.get(x, 0) + 1
         return count
 
-    def key_value_swap_dict(d: dict):
-        return {
-            value: key
-            for key, value in d.items()
-        }
+    bucket = [
+        [] for _ in range(len(nums) + 1)
+    ]
 
-    # Returns { element: occurrence_count }
-    element_occ_dict = element_counter(nums)
+    element_count = element_counter(nums)
 
-    # Find the key: value that appears most frequently
-    max_occurrence_of_any_element = max(element_occ_dict.values())
-
-    # Returns { occurrence_count: element }
-    occ_element_dict = key_value_swap_dict(element_occ_dict)
+    for element in element_count:
+        bucket[
+            element_count[element]
+        ].append(element)
 
     result = []
-    predicted_key = max_occurrence_of_any_element
+    idx = len(bucket) - 1
     while k > 0:
-        if occ_element_dict.get(predicted_key):
-            result += [
-                occ_element_dict[predicted_key]
-            ]
-            k -= 1
-        predicted_key -= 1
+        if bucket[idx]:
+            result += bucket[idx]
+            k -= len(bucket[idx])
+        idx -= 1
 
     return result
