@@ -1,4 +1,24 @@
 def balanced_parenthesis(s: str) -> str:
+    """Given a string s of '(' , ')' and lowercase English characters.
+
+    Your task is to remove the minimum number of parentheses
+    ( '(' or ')', in any positions ) so that the resulting
+    parentheses string is valid and return any valid string.
+
+    Formally, a parentheses string is valid if and only if:
+
+    It is the empty string, contains only lowercase characters, or
+    It can be written as AB (A concatenated with B), where A and B are valid strings, or
+    It can be written as (A), where A is a valid string.
+
+    Args:
+        s (str): input string
+
+    Returns:
+        str: Cleaned up string with the invalid parenthesis removed
+    
+    Source: https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
+    """
     s = [*s]
     parenthesis_stack = []
     opening_tag, closing_tag = '(', ')'
@@ -18,11 +38,5 @@ def balanced_parenthesis(s: str) -> str:
     # we can't close them, hence, they have to be removed
     for i in parenthesis_stack:
         s[i] = ''
-        
-    return ''.join(s)
 
-print(
-    balanced_parenthesis(
-        "(a(b(c)d)"
-    )
-)
+    return ''.join(s)
