@@ -31,7 +31,7 @@ def two_sum(numbers: list, target: int) -> list:
     while l < r:
         total = numbers[l] + numbers[r]
         if total == target:
-            return [l, r]
+            return [l + 1, r + 1]
         if total > target:
             r -= 1
         else:
