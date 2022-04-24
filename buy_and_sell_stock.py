@@ -5,9 +5,13 @@ def sell_stock(prices):
     for price in prices:
         current_profit = price - min_price
 
-        if current_profit > max_profit_achieved:
-            max_profit_achieved = current_profit
-        if price < min_price:
-            min_price = price
+        max_profit_achieved = max(
+            max_profit_achieved,
+            current_profit
+        )
+        min_price = max(
+            min_price,
+            price
+        )
 
     return max_profit_achieved
