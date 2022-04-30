@@ -1,3 +1,6 @@
+from collections import defaultdict
+from math import ceil
+
 def three_sum_brute_force(nums: list) -> list:
     nums.sort()
     rec = set()
@@ -15,27 +18,39 @@ def three_sum_brute_force(nums: list) -> list:
 
 
 def three_sum(nums: list) -> list:
-    if len(nums) < 3: return []
+    results = []
 
-    nums.sort()
-    rec = set()
-    res = []
+    element_count = defaultdict(int)
+    while nums:
+        v = nums.pop()
+        element_count[v] += 1
 
-    for i in range(len(nums) - 2):
-        if i > 0 and nums[i] == nums[i - 1]:
-            continue
-        base = nums[i]
-        start, end = i + 1, len(nums) - 1
-        while start < end:
-            total = base + nums[start] + nums[end]
-            if total > 0:
-                end -= 1
-            else:
-                if total == 0 and (base, nums[start], nums[end]) not in rec:
-                    rec.add((base, nums[start], nums[end]))
-                    res.append([
-                        base, nums[start], nums[end]
-                    ])
-                start += 1
+    keys = sorted(element_count.keys())
 
-    return res
+    for l in keys:
+        if l > 0:
+            break
+        elif l == 0:
+            if element_count[0] >= 3:
+                results.append([0, 0, 0])
+        else:
+            search_lower_bound = ceil(abs(l) / 2)
+            search_upper_bound = 2 * abs(l)
+
+            for idx in range(1, len(keys) + 1):
+                r = keys[-idx]
+                if   r > search_upper_bound: continue
+                elif r < search_lower_bound: break
+                else:
+                    m = 0 - (l + r)
+                    if m in element_count:
+                        r_count = element_count[r]
+                        m_count = element_count[m]
+                        if (
+                            (l == m and m_count >= 2) or
+                            (m == r and r_count >= 2) or
+                            (l != m and m != r)
+                        ):
+                            results.append([l, m, r])
+
+    return results
