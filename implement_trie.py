@@ -1,0 +1,49 @@
+class TrieNode:
+    def __init__(self, character='*'):
+        self.character = character
+        self.children = {}
+        self.is_complete_word = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode('*')
+
+    def insert(self, word: str) -> None:
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode(char)
+            node = node.children[char]
+        node.is_complete_word = True
+
+    def search(self, word: str) -> bool:
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return node.is_complete_word
+
+    def startsWith(self, prefix: str) -> bool:
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return True
+
+
+
+trie = Trie()
+
+[
+    print(a)
+    for a in [
+        trie.insert("apple"),
+        trie.search("apple"),   #// return True
+        trie.search("app"),     #// return False
+        trie.startsWith("app"), #// return True
+        trie.insert("app"),
+        trie.search("app")     #// return True
+    ]
+]
