@@ -1,4 +1,4 @@
-def min_rotated_array(nums: list, target: int):
+def min_rotated_array(nums: list):
     # If the array isn't rotated, the first value must be the smallest
     if nums[0] < nums[-1]: return nums[0]
 
