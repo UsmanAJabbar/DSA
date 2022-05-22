@@ -31,19 +31,3 @@ class Trie:
                 return False
             node = node.children[char]
         return True
-
-
-
-trie = Trie()
-
-[
-    print(a)
-    for a in [
-        trie.insert("apple"),
-        trie.search("apple"),   #// return True
-        trie.search("app"),     #// return False
-        trie.startsWith("app"), #// return True
-        trie.insert("app"),
-        trie.search("app")     #// return True
-    ]
-]
