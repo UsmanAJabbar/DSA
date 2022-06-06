@@ -2,6 +2,8 @@ def numIslands(grid: list) -> int:
     if not grid or not grid[0]: return 0
 
     ISLAND = '1'
+    WATER = '0'
+
     number_of_islands = 0
     grid_height, grid_length = len(grid), len(grid[0])
 
@@ -12,7 +14,8 @@ def numIslands(grid: list) -> int:
             grid[y][x] is not ISLAND
         ): return
 
-        grid[y][x] = 0
+        grid[y][x] = WATER
+
         backtrack(x + 1, y)
         backtrack(x - 1, y)
         backtrack(x, y + 1)
